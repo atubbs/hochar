@@ -1,0 +1,16 @@
+<div style="padding: 0px 0px 0px 30px">
+  <div class="page-header" style="margin: 0">
+    <h1>
+      {{recipe.name}}
+    </h1>
+  </div>
+  <div>
+    <h3>Ingredients</h3>
+    <ul class="list-unstyled">
+      <li ng-repeat="component in recipe.components">{{component.measure}} {{component.unit}} <a href="#/recipes/includes/{{component.ingredient}}">{{component.ingredient}}</a> {{component.extended.length ? "(" + component.extended + ")" : ""}}</li>
+    </ul>
+    <h3>Instructions</h3>
+    <p>{{recipe.instructions}}</p>
+    <p><a href="#/recipes/edit/{{recipe._id}}">edit</a></p>
+  </div>
+</div>

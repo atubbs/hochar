@@ -1,0 +1,45 @@
+<div style="padding: 0px 0px 0px 30px">
+  <div class="page-header" style="margin: 0">
+    <h1>
+      {{recipe.name}}
+    </h1>
+  </div>
+  <div>
+    <h3>Raw Editing Only, Use At Your Own Risk!</h3>
+    <div>
+      <form name="outerForm" novalidate class="simple-form" ng-controller="FormController">
+        <div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="recipe.name" ng-model-options="{ getterSetter : true }"></input>
+          </div>
+
+          <div class="form-group" ng-repeat="component in recipe.components">
+            <ng-form name="innerForm">
+            <div class="row">
+              <div class="col-xs-1">
+                <input type="text" class="form-control" ng-model="component.measure"></input>
+              </div>
+              <div class="col-xs-2">
+                <input type="text" class="form-control" ng-model="component.unit"></input>
+              </div>
+              <div class="col-xs-3">
+                <input type="text" class="form-control" ng-model="component.ingredient"></input>
+              </div>
+              <div class="col-xs-4">
+                <input type="text" class="form-control" ng-model="component.extended"></input>
+              </div>
+            </div>
+            </ng-form>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="recipe.instructions"></input>
+          </div> 
+          <div class="form-grou">
+            <button type=-"submit" class="btn btn-success">Submit</button
+          </div>
+        </div>
+        <span>{{formInfo}}</span>
+      </form>
+    </div>
+  </div>
+</div>

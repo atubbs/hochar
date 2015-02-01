@@ -1,0 +1,23 @@
+<div style="padding: 0px 0px 0px 30px">
+  <div class="page-header" style="margin: 0">
+    <h1>
+      <!-- Heading goes here -->
+      All Ingredients
+    </h1>
+  </div>
+  <div>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+      </tr>
+      <tr ng-repeat="ingredient in ingredients">
+        <!--<td><a href="#/users/{{user.id}}">{{user.firstname + " " +
+                                                user.lastname}}</a></td>
+                                <td>{{user.address}}</td>
+                                <td>{{user.email}}</td>
+                                -->
+        <td><a href="#/recipes/includes/{{ingredient}}">{{ingredient}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
