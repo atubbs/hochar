@@ -6,8 +6,10 @@
   </div>
   <div>
     <h3>Raw Editing Only, Use At Your Own Risk!</h3>
-    <div>
-      <form name="outerForm" novalidate class="simple-form" ng-controller="FormController">
+    <div ng-controller="FormController">
+      <!-- ng-controller="FormController" name="outerForm" novalidate class="simple-form" ng-controller="FormController"-->
+      <!--<form ng-submit="submitEditForm()">-->
+      <form>
         <div>
           <div class="form-group">
             <input type="text" class="form-control" ng-model="recipe.name" ng-model-options="{ getterSetter : true }"></input>
@@ -16,7 +18,7 @@
           <div class="form-group" ng-repeat="component in recipe.components">
             <ng-form name="innerForm">
             <div class="row">
-              <div class="col-xs-1">
+              <div class="col-xs-2">
                 <input type="text" class="form-control" ng-model="component.measure"></input>
               </div>
               <div class="col-xs-2">
@@ -25,17 +27,22 @@
               <div class="col-xs-3">
                 <input type="text" class="form-control" ng-model="component.ingredient"></input>
               </div>
-              <div class="col-xs-4">
+              <div class="col-xs-5">
                 <input type="text" class="form-control" ng-model="component.extended"></input>
               </div>
             </div>
             </ng-form>
           </div>
           <div class="form-group">
+            <button ng-click="addComponent()" >Add Component</button>
+          </div>
+          <div class="form-group">
             <input type="text" class="form-control" ng-model="recipe.instructions"></input>
           </div> 
-          <div class="form-grou">
-            <button type=-"submit" class="btn btn-success">Submit</button
+          <div class="form-group">
+            <!--<input type="submit" value="Submit"></input>-->
+            <!--<input type="submit" value="Submit"></input>-->
+            <button type="submit" ng-click="submitEditForm()" class="btn btn-success">Submit</button>
           </div>
         </div>
         <span>{{formInfo}}</span>

@@ -41,6 +41,23 @@ router.get('/', function(req, res, next) {
 });
 */
 
+// update a post
+// TODO: should accept PUT for this instead ... but need to figure out how to get angular's ngRoute to PUT
+router.post('/:id', function(req, res) {
+  console.log('req.params.id -> ' + req.params.id);
+  console.log(req.body);
+  db.handle.update({'_id' : req.params.id}, req.body, {}, function(err, numReplaced) {
+    console.log(err);
+    console.log(numReplaced);
+  });
+  res.send('Updated a recipe, thanks');
+});
+
+router.put('/:id', function(req, res) {
+  console.log(req.body);
+  res.send('Hey buddy, thanks!');
+});
+
 router.get('/:id', function(req, res, next) {
    db.handle.findOne({'_id' : req.params.id}, function(err, doc) {
     if (doc) {

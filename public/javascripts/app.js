@@ -1,4 +1,44 @@
+/* think this is it
+
+var app = angular.module('app', ['ngResource', 'ngRoute']);
+app.factory('Notes', ['$resource', function($resource) {
+return $resource('/notes/:id', null, { 'update': {method:'PUT' }
+});
+}]);
+app.controller('NotesCtrl', ['$scope', '$routeParams', 'Notes',
+function($scope, $routeParams, Notes) {
+var note = Notes.get({id:$routeParams.id});
+$id = note.id;
+Notes.update({id:$id}, note);
+}]);
+*/
+
+
+/*
+var module = angular.module('my.resource', ['ngResource']);
+module.factory('Resource', [ '$resource', function($resource) {
+  return function(url, params, methods) {
+    var defaults = {
+      update: { method: 'put', isArray: false },
+      create: { method: 'post' }
+    };
+
+    methods = angular.extend(defaults, methods);
+    var resource = $resource(url, params, methods);
+
+    resource.prototype.$save = function() {
+      if (!this.id) {
+        return this.$create();
+      } else {
+        return this.$update();
+      }
+    };
+    return resource;
+  };
+}]);
+  */
 var app = angular.module("app", [ 'ui.bootstrap', 'ngRoute', 'ngResource' ]);
+//var app = angular.module("app", [ 'ui.bootstrap', 'ngRoute', 'my.resource' ]);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -51,14 +91,26 @@ app.controller("RecipesEditCtrl", ['$scope', 'service', '$routeParams', function
   service.getRecipesDetail($scope, $routeParams.id);
 }]);                                  
 
-app.controller("FormController", function FormController($scope) {
-  console.log("FormController did something!");
-  
-});
+app.controller("FormController", ['$scope', 'service', '$resource', function FormController($scope, service) {
+  $scope.addComponent = function(item, event) {
+    // don't need to round-trip for this one
+    $scope.recipe.components.push({measure:'', unit:'', ingredient:'', extended:''});
+  };
+  $scope.submitEditForm = function(item, event) {
+    //console.log("--> submitting form");
+    //console.log($scope);
+    console.log($scope.recipe);
+    service.updateRecipesDetail($scope);
+  };
+}]);
  
 app.factory('service', ['$resource', function($resource){
   return new Engine($resource);
 }]);
+/*app.factory('service', ['Resource', function(Resource){
+  return new Engine(Resource);
+}]);
+*/
 
 function Engine(resource) {
 
@@ -91,6 +143,51 @@ function Engine(resource) {
       scope.recipe = recipe;
     });
   }
+
+  this.updateRecipesDetail = function(scope) {
+    // TODO: this ngResource shit is shit, just use http
+    var Recipe = resource('/recipes/:id', {id: scope.recipe._id}, {'update' : {method:'PUT'}});
+    // this works, but ugh; why do I need to GET first?
+    var r = Recipe.get({id:scope.recipe._id}, function(recipe) {
+      r.name = scope.recipe.name;
+      r.instructions = scope.recipe.instructions;
+      delete r["components"];
+      r.components = [];
+      for (var i = 0; i < scope.recipe.components.length; i++) {
+        // only send a component if something is set; allows clearing out a component to delete?
+        if (scope.recipe.component[i].measure.length > 0
+          || scope.recipe.component[i].measure.unit > 0
+          || scope.recipe.component[i].measure.ingredient > 0
+          || scope.recipe.component[i].measure.extended > 0)
+          r.components.push(scope.recipe.components[i]);
+      }
+      //r.$save();
+      r.$update();
+      //this.name = scope.recipe.name;
+      //recipe.instructions = scope.recipe.instructions;
+      //kk
+    });
+
+
+
+    /*
+    console.log("_");
+    console.log(Recipe);
+    console.log("_");
+    Recipe.get({id:scope.recipe._id}, function(scope) {
+      scope.$save();
+    });
+    */
+    //for (var k in recipe) Recipe[k] = recipe[k];
+    /*console.log(Recipe);
+    recipe.$save();*/
+    //Recipe.save();
+                     /*
+    delete recipe["_id"];
+    Recipe.$save
+    Recipe.$save({id:recipe._id}, 
+    */
+  };
 /*
   this.getRecipesEdit = function(scope, id) {
     var Recipe = resource('/recipes/:id');
