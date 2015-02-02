@@ -1,16 +1,13 @@
 <div style="padding: 0px 0px 0px 30px">
   <div class="page-header" style="margin: 0">
     <h1>
-      All Recipes
+      Recipes <span ng-show="includesIngredients.length > 0">With <i>{{includesIngredients}}</i></span>
     </h1>
-  </div>
-  <div style="padding-top: 15px; padding-bottom: 30px">
-    Go ahead. Pick a recipe. I dare you.
   </div>
   <div>
     <table class="table">
       <tr>
-        <th>Name</th>
+        <th>Name </th>
       </tr>
       <tr ng-repeat="recipe in recipes">
         <td><a href="#/recipes/{{recipe._id}}">{{recipe.name}}</a><!--<span ng-repeat="component in recipe.components">{{component.ingredient}} </span>--></td>

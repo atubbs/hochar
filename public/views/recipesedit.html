@@ -5,10 +5,7 @@
     </h1>
   </div>
   <div>
-    <h3>Raw Editing Only, Use At Your Own Risk!</h3>
     <div ng-controller="FormController">
-      <!-- ng-controller="FormController" name="outerForm" novalidate class="simple-form" ng-controller="FormController"-->
-      <!--<form ng-submit="submitEditForm()">-->
       <form>
         <div>
           <div class="form-group">
@@ -34,15 +31,14 @@
             </ng-form>
           </div>
           <div class="form-group">
-            <button ng-click="addComponent()" >Add Component</button>
+            <button ng-click="editRecipeAddComponent()" class="btn btn-primary">Add Component</button>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" ng-model="recipe.instructions"></input>
           </div> 
           <div class="form-group">
-            <!--<input type="submit" value="Submit"></input>-->
-            <!--<input type="submit" value="Submit"></input>-->
-            <button type="submit" ng-click="submitEditForm()" class="btn btn-success">Submit</button>
+            <button type="submit" ng-click="editRecipeSubmit()" class="btn btn-success">Save</button>
+            <button type="button" ng-hide="isNew" ng-really-message="Are you sure?" ng-really-click="editRecipeDelete()" class="btn btn-danger danger">Delete</button>
           </div>
         </div>
         <span>{{formInfo}}</span>

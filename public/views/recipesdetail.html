@@ -10,7 +10,10 @@
       <li ng-repeat="component in recipe.components">{{component.measure}} {{component.unit}} <a href="#/recipes/includes/{{component.ingredient}}">{{component.ingredient}}</a> {{component.extended.length ? "(" + component.extended + ")" : ""}}</li>
     </ul>
     <h3>Instructions</h3>
-    <p>{{recipe.instructions}}</p>
-    <p><a href="#/recipes/edit/{{recipe._id}}">edit</a></p>
+    <div>{{recipe.instructions}}</div>
+    <h3>Meta</h3>
+    <div>
+      <a href="#/recipes/edit/{{recipe._id}}" class="btn btn-primary">Edit</a>
+    </div>
   </div>
 </div>
