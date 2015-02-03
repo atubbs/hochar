@@ -57,6 +57,6 @@ To get going:
 * clone it
 * npm install
 * npm start
-* visit localohst:8080
+* visit localhost:8080
 * mix
 * drink
