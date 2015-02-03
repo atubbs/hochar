@@ -47,3 +47,12 @@ Things I'm interested in getting working someday:
 * Find similar recipes and/or list n most similar recipes
 * ingredient aliasing/branching (e.g. gin can be split into london dry, old tom, genever; rye isn't that far from bourbon and bourbon isn't that far from cognac (flavor/mixer profiles people, not saying they're at all similar production/history/culture-wise)
 * usable touch UI
+
+To get going:
+
+* clone it
+* npm install
+* npm start
+* visit localohst:8080
+* mix
+* drink
