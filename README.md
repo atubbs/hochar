@@ -35,6 +35,8 @@ Things that are broken or won't work:
 
 * database path is hard-coded; unless you're running on linux and your username is atubbs, your odds of success without changing that are zero
 * The searching on the home page will find ingredients but it does nothing else and you can't do anything with them
+* the web front-end pretty just has a bad day if the back end isn't running
+* there's basically no error handling/recovery
 
 Things that I want to get working soon:
 
@@ -44,6 +46,7 @@ Things that I want to get working soon:
 
 Things I'm interested in getting working someday:
 
+* any sort of testing at all might be useful
 * Find similar recipes and/or list n most similar recipes
 * ingredient aliasing/branching (e.g. gin can be split into london dry, old tom, genever; rye isn't that far from bourbon and bourbon isn't that far from cognac (flavor/mixer profiles people, not saying they're at all similar production/history/culture-wise)
 * usable touch UI
