@@ -50,7 +50,24 @@ app.config(function($routeProvider) {
   });
 });
 
-app.controller("HomeCtrl", ['$scope', function($scope, service) {			
+app.controller("HomeCtrl", ['$scope', 'service', function($scope, service) {			
+  $scope.selectedIngredients = [];
+  $scope.hideIngredientHeader = true;
+  service.getIngredients($scope);
+  $scope.removePinnedIngredient = function(item, event) {
+    console.log($scope.q);
+  };
+}]);
+
+// TODO: can we just use the HomeCtrl and get rid of the form ctrl?
+app.controller("TypeaheadCtrl", ['$scope', 'service', function($scope, service) {
+  $scope.addPinnedIngredient = function(item, event) {
+    console.log("addPinned");
+    $scope.selectedIngredients.push($scope.searchBox);
+    $scope.hideIngredientHeader = false;
+  };
+
+  
 }]);
 
 app.controller("IngredientsCtrl", ['$scope', 'service', function($scope, service) {

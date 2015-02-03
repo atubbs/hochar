@@ -1,4 +1,7 @@
 # TODO 
+* make a real README
+* get rid of the provided db and populate with some dummy data instead
+* make 'pinned ingredients' header show up only when needed
 * don't put delete on NEW page
 * all sorts of error handling - bad input, requests fail, service not availble, etc.
 * save page (new or edit) redirects to view page

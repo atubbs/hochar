@@ -1,41 +1,20 @@
 <div style="padding: 0px 0px 0px 30px">
-	<div class="page-header" style="margin: 0">
-		<h1>CocktailEngine</h1>
-	</div>
-	<div style="padding-top: 10px">
-		<div style="padding-bottom: 30px">
-			This the homepage of this demo single page app. There are two links
-			as shown in the side navigation. <b>Click on the links in side
-				navigation bar</b>, and you would see different views loading without
-			the whole page being loaded. Only the views get changed. Also, for
-			this demo, no data is stored in the database.
-		</div>
-		<!--
-							Different views will be loaded based on the routes 
-							 -->
-		<div style="padding-top: 20px">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">Implementation Notes</h3>
-				</div>
-				<div class="panel-body">
-					<ul>
-						<li>As you click on one of the links in side navigation, the
-							data is retrieved from server using RESTful API with the help of
-							ngResource service, $resource (query action method)</li>
-						<li>In New User Link, as you submit the new user, the data is
-							sent to server using ngResource service, $resource (save action
-							method)</li>
-						<li>In All Users page, there is a link under each users name
-							which takes you to user's details page. Again, this is retrieved
-							using RESTful API, ngResource $resource service (get method)</li>
-						<li>ng-view directive is used to access different views</li>
-						<li>ngRoute module is used to load different views. Each view
-							has got its templateURL and a controller.</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
+  <div class="page-header" style="margin: 0">
+    <h1>Let's Get Started</h1>
+  </div>
+  <div style="padding-top: 10px">
+    <div style="padding-bottom: 30px">
+      Find some ingredients in the search box and then click the magic button.
+    </div>
+    <div>
+      <form ng-controller="TypeaheadCtrl" ng-submit="addPinnedIngredient()">
+        <input type="text" ng-model="searchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control">
+      </form>
+    </div>
+    <div>
+      <!-- TODO: figure out how to ng-show -->
+        <h2>Pinned Ingredients</h3>
+        <button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="removePinnedIngredient()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>
+    </div>
+  </div>
 </div>
