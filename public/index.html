@@ -10,24 +10,22 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-resource.js"></script>
 <script src="/javascripts/app.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
+<style>
+/* fixed navarbar required body padding */
+body { padding-top: 50px; }
+</style>
 </head>
-
 <body>
-<div class="container">
-  <table style="width: 100%">
-    <tr>
-      <td style="width: 15%; vertical-align: top; padding-top: 10px">
-        <div class="list-group">
-          <a href="#/recipes" class="list-group-item">All Recipes</a>
-          <a href="#/ingredients" class="list-group-item">All Ingredients</a>
-          <a href="#/newrecipe" class="list-group-item">New Recipe</a>
-        </div>
-      </td>
-      <td style="width: 85%; vertical-align: top;">
-        <div ng-view></div>
-      </td>
-    </tr>
-  </table>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <ul class="nav navbar-nav">
+    <li><a href="#/">Search</a></li>
+    <li><a href="#/recipes">All Recipes</a></li>
+    <li><a href="#/ingredients">All Ingredients</a></li>
+    <li><a href="#/newrecipe">New Recipe</a></li>
+  </ul>
+</nav>
+<div class="container-fluid">
+  <div ng-view></div>
 </div>
 </body>
 </html>
