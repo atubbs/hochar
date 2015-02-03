@@ -156,7 +156,6 @@ function Engine(resource) {
   }
 
   this.getRecipesSubstr = function(scope, substring, location) {
-    console.log("GETRECIPESSUBSTR");
     var Recipes = resource('/recipes');
     Recipes.query({substr:substring}, function(recipes) {
       scope.recipes = recipes;
