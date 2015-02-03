@@ -1,4 +1,3 @@
-
 var app = angular.module("app", [ 'ui.bootstrap', 'ngRoute', 'ngResource' ]);
 
 // A generic confirmation for risky actions.
@@ -54,18 +53,18 @@ app.controller("HomeCtrl", ['$scope', 'service', function($scope, service) {
   $scope.selectedIngredients = [];
   $scope.hideIngredientHeader = true;
   service.getIngredients($scope);
-  $scope.removePinnedIngredient = function(item, event) {
-    console.log($scope.q);
+  $scope.pinnedIngredientRemove = function(item, event) {
   };
+  $scope.pinnedIngredientAdd = function(item, event) {
+    $scope.selectedIngredients.push($scope.searchBox);
+    $scope.hideIngredientHeader = false;
+  };
+ 
+
 }]);
 
 // TODO: can we just use the HomeCtrl and get rid of the form ctrl?
 app.controller("TypeaheadCtrl", ['$scope', 'service', function($scope, service) {
-  $scope.addPinnedIngredient = function(item, event) {
-    console.log("addPinned");
-    $scope.selectedIngredients.push($scope.searchBox);
-    $scope.hideIngredientHeader = false;
-  };
 
   
 }]);
@@ -104,7 +103,11 @@ app.controller("FormController", ['$scope', 'service', '$location', function For
   };
   $scope.editRecipeDelete = function(item, event) {
     service.deleteRecipe($scope, $location); 
-    
+  };
+  $scope.editRecipeCancel = function(item, event) {
+    $location.url($scope.recipe._id === void 0
+      ? '/'
+      : '/recipes/' + $scope.recipe._id);
   };
 }]);
 

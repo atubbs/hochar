@@ -9,23 +9,23 @@
       <form>
         <div>
           <div class="form-group">
-            <input type="text" class="form-control" ng-model="recipe.name" ng-model-options="{ getterSetter : true }"></input>
+            <input type="text" class="form-control" ng-model="recipe.name" ng-model-options="{ getterSetter : true }" placeholder="recipe name"></input>
           </div>
 
           <div class="form-group" ng-repeat="component in recipe.components">
             <ng-form name="innerForm">
             <div class="row">
               <div class="col-xs-2">
-                <input type="text" class="form-control" ng-model="component.measure"></input>
+                <input type="text" class="form-control" ng-model="component.measure" placeholder="measure"></input>
               </div>
               <div class="col-xs-2">
-                <input type="text" class="form-control" ng-model="component.unit"></input>
+                <input type="text" class="form-control" ng-model="component.unit" placeholder="unit"></input>
               </div>
               <div class="col-xs-3">
-                <input type="text" class="form-control" ng-model="component.ingredient"></input>
+                <input type="text" class="form-control" ng-model="component.ingredient" placeholder="ingredient"></input>
               </div>
               <div class="col-xs-5">
-                <input type="text" class="form-control" ng-model="component.extended"></input>
+                <input type="text" class="form-control" ng-model="component.extended" placeholder="extended"></input>
               </div>
             </div>
             </ng-form>
@@ -34,10 +34,11 @@
             <button ng-click="editRecipeAddComponent()" class="btn btn-primary">Add Component</button>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" ng-model="recipe.instructions"></input>
+            <input type="text" class="form-control" ng-model="recipe.instructions" placeholder="instructions"></input>
           </div> 
           <div class="form-group">
             <button type="submit" ng-click="editRecipeSubmit()" class="btn btn-success">Save</button>
+            <button type="submit" ng-click="editRecipeCancel()" class="btn btn-warning">Cancel</button>
             <button type="button" ng-hide="isNew" ng-really-message="Are you sure?" ng-really-click="editRecipeDelete()" class="btn btn-danger danger">Delete</button>
           </div>
         </div>

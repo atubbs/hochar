@@ -7,14 +7,15 @@
       Find some ingredients in the search box and then click the magic button.
     </div>
     <div>
-      <form ng-controller="TypeaheadCtrl" ng-submit="addPinnedIngredient()">
+      <!--ng-controller="TypeaheadCtrl"-->
+      <form  ng-submit="pinnedIngredientAdd()">
         <input type="text" ng-model="searchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control">
       </form>
     </div>
     <div>
       <!-- TODO: figure out how to ng-show -->
         <h2>Pinned Ingredients</h3>
-        <button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="removePinnedIngredient()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>
+        <button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>
     </div>
   </div>
 </div>
