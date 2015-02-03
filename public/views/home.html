@@ -9,19 +9,19 @@
     <div>
       <h3>Recipe Search</h3>
       <form ng-submit="searchRecipesByName()">
-        <input type="text" ng-model="recipeSearchBox" typeahead="name as recipe.name for recipe in recipes | filter:$viewValue | limitTo:20" class="form-control">
+        <input type="text" ng-model="recipeSearchBox" typeahead="recipename for recipename in recipesnames | filter:$viewValue | limitTo:20" class="form-control"></input>
       </form>
     </div>
     <div>
       <h3>Ingredient Search</h3>
       <form ng-submit="pinnedIngredientAdd()">
-        <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control">
+        <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control"></input>
       </form>
     </div>
     <div>
       <!-- TODO: figure out how to ng-show -->
-        <h2>Pinned Ingredients</h3>
-        <button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>
+      <!--<h2>Pinned Ingredients</h3>-->
+        <!--<button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>-->
     </div>
   </div>
 </div>

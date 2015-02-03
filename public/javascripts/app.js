@@ -53,7 +53,7 @@ app.config(function($routeProvider) {
   });
 });
 
-app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, service, $location) {			
+app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, service, $location) {
   $scope.selectedIngredients = [];
   $scope.recipeSubstring = "";
   service.getIngredients($scope);
@@ -64,6 +64,7 @@ app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, s
     $scope.selectedIngredients.push($scope.ingredientSearchBox);
   };
   $scope.searchRecipesByName = function(item, event) {
+    $scope.recipeSubstring = $scope.recipeSearchBox;
     $location.url('/recipes/search/' + $scope.recipeSearchBox);
   };
 }]);
@@ -78,7 +79,7 @@ app.controller("RecipesCtrl", ['$scope', 'service', function($scope, service) {
 
 app.controller("RecipesCtrlSubstr", ['$scope', 'service', '$routeParams', '$location', function($scope, service, $routeParams, $location) {
   $scope.recipeSubstring = $routeParams.substr;
-  service.getRecipesSubstr($scope, $routeParams.substr);
+  service.getRecipesSubstr($scope, $routeParams.substr, $location);
 }]);
 
 app.controller("RecipesCtrlIncludes", ['$scope', 'service', '$routeParams', function($scope, service, $routeParams) {
@@ -133,7 +134,10 @@ function Engine(resource) {
   this.getRecipesNames = function(scope) {
     var Recipes = resource('/recipes');
     Recipes.query({format:"short"}, function(recipes) {
-      scope.recipes = recipes;
+      scope.recipesnames = [];
+      for (var i = 0; i < recipes.length; ++i) {
+        scope.recipesnames.push(recipes[i].name);
+      }
     });
   }
 
@@ -151,12 +155,14 @@ function Engine(resource) {
     });
   }
 
-  this.getRecipesSubstr = function(scope, substring) {
+  this.getRecipesSubstr = function(scope, substring, location) {
     console.log("GETRECIPESSUBSTR");
     var Recipes = resource('/recipes');
     Recipes.query({substr:substring}, function(recipes) {
-      console.log("OHGOD");
       scope.recipes = recipes;
+      if (void 0 !== recipes && recipes.length == 1) {
+        location.url("/recipes/" + recipes[0]._id);
+      }
     });
   }
 
