@@ -6,6 +6,7 @@ var db = require('../database');
 // /recipes -> all recipes, all data
 // /recipes?format=short -> all recipe titles
 // /recipes?includes=ingredient1,ingredient2,...,ingredientn -> recipes matching ingredient list (full string match)
+// /recipes?substr=foo
 // list/search recipes by ingredient
 // TODO: search by name
 router.get('/', function(req, res, next) {
@@ -14,6 +15,10 @@ router.get('/', function(req, res, next) {
     var ingredients = req.query.includes.split(',');
     // TODO: support multiple ingredients
     db.handle.find({"components.ingredient" : ingredients[0]}, filter, function(err, doc) {
+      res.json(_.sortBy(doc, 'name'));
+    });
+  } else if (void 0 !== req.query.substr) {
+    db.handle.find({"name" : new RegExp(req.query.substr, 'i')}, filter, function(err, doc) {
       res.json(_.sortBy(doc, 'name'));
     });
   } else {

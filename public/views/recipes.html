@@ -1,7 +1,9 @@
 <div style="padding: 0px 0px 0px 30px">
   <div class="page-header" style="margin: 0">
     <h1>
-      Recipes <span ng-show="includesIngredients.length > 0">With <i>{{includesIngredients}}</i></span>
+      Recipes 
+      <span ng-show="includesIngredients.length > 0"> That Include <i>{{includesIngredients}}</i></span>
+      <span ng-show="recipeSubstring.length > 0"> With <i>{{recipeSubstring}}</i> In Their Name</span>
     </h1>
   </div>
   <div>

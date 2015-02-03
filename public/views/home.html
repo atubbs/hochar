@@ -4,12 +4,18 @@
   </div>
   <div style="padding-top: 10px">
     <div style="padding-bottom: 30px">
-      Find some ingredients in the search box and then click the magic button.
+      If this was more clever, these searches would probably be combined somehow.
     </div>
     <div>
-      <!--ng-controller="TypeaheadCtrl"-->
-      <form  ng-submit="pinnedIngredientAdd()">
-        <input type="text" ng-model="searchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control">
+      <h3>Recipe Search</h3>
+      <form ng-submit="searchRecipesByName()">
+        <input type="text" ng-model="recipeSearchBox" typeahead="name as recipe.name for recipe in recipes | filter:$viewValue | limitTo:20" class="form-control">
+      </form>
+    </div>
+    <div>
+      <h3>Ingredient Search</h3>
+      <form ng-submit="pinnedIngredientAdd()">
+        <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control">
       </form>
     </div>
     <div>

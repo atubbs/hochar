@@ -23,6 +23,10 @@ app.config(function($routeProvider) {
     controller : 'IngredientsCtrl',
     templateUrl : 'views/ingredients.html'
   })
+  .when('/recipes/search/:substr', {
+    controller : 'RecipesCtrlSubstr',
+    templateUrl : 'views/recipes.html'
+  })
   .when('/recipes/includes/:ingredient', {
     controller : 'RecipesCtrlIncludes',
     templateUrl : 'views/recipes.html'
@@ -49,24 +53,19 @@ app.config(function($routeProvider) {
   });
 });
 
-app.controller("HomeCtrl", ['$scope', 'service', function($scope, service) {			
+app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, service, $location) {			
   $scope.selectedIngredients = [];
-  $scope.hideIngredientHeader = true;
+  $scope.recipeSubstring = "";
   service.getIngredients($scope);
+  service.getRecipesNames($scope);
   $scope.pinnedIngredientRemove = function(item, event) {
   };
   $scope.pinnedIngredientAdd = function(item, event) {
-    $scope.selectedIngredients.push($scope.searchBox);
-    $scope.hideIngredientHeader = false;
+    $scope.selectedIngredients.push($scope.ingredientSearchBox);
   };
- 
-
-}]);
-
-// TODO: can we just use the HomeCtrl and get rid of the form ctrl?
-app.controller("TypeaheadCtrl", ['$scope', 'service', function($scope, service) {
-
-  
+  $scope.searchRecipesByName = function(item, event) {
+    $location.url('/recipes/search/' + $scope.recipeSearchBox);
+  };
 }]);
 
 app.controller("IngredientsCtrl", ['$scope', 'service', function($scope, service) {
@@ -74,7 +73,12 @@ app.controller("IngredientsCtrl", ['$scope', 'service', function($scope, service
 }]);
 
 app.controller("RecipesCtrl", ['$scope', 'service', function($scope, service) {
-  service.getRecipes($scope);
+  service.getRecipesFull($scope);
+}]);
+
+app.controller("RecipesCtrlSubstr", ['$scope', 'service', '$routeParams', '$location', function($scope, service, $routeParams, $location) {
+  $scope.recipeSubstring = $routeParams.substr;
+  service.getRecipesSubstr($scope, $routeParams.substr);
 }]);
 
 app.controller("RecipesCtrlIncludes", ['$scope', 'service', '$routeParams', function($scope, service, $routeParams) {
@@ -126,7 +130,14 @@ function Engine(resource) {
     });
   }
 
-  this.getRecipes = function(scope) {
+  this.getRecipesNames = function(scope) {
+    var Recipes = resource('/recipes');
+    Recipes.query({format:"short"}, function(recipes) {
+      scope.recipes = recipes;
+    });
+  }
+
+  this.getRecipesFull = function(scope) {
     var Recipes = resource('/recipes');
     Recipes.query({}, function(recipes) {
       scope.recipes = recipes;
@@ -136,6 +147,15 @@ function Engine(resource) {
   this.getRecipesIncludes = function(scope, ingredient) {
     var Recipes = resource('/recipes');
     Recipes.query({includes:ingredient}, function(recipes) {
+      scope.recipes = recipes;
+    });
+  }
+
+  this.getRecipesSubstr = function(scope, substring) {
+    console.log("GETRECIPESSUBSTR");
+    var Recipes = resource('/recipes');
+    Recipes.query({substr:substring}, function(recipes) {
+      console.log("OHGOD");
       scope.recipes = recipes;
     });
   }
