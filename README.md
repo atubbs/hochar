@@ -30,6 +30,7 @@ Things that work:
 * Listing all ingredients
 * Listing all recipes
 * Listing all recipes that match one ingredient
+* Searching a recipe by name
 
 Things that are broken or won't work:
 
@@ -41,7 +42,6 @@ Things that are broken or won't work:
 Things that I want to get working soon:
 
 * List all recipes that match several ingredients
-* Easily search a recipe by name
 * Easily search an ingredient by name and allow it to be pinned; execute a multi-ingredient search via the pins
 
 Things I'm interested in getting working someday:

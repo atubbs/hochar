@@ -1,15 +1,8 @@
 # TODO 
-* make a real README
 * get rid of the provided db and populate with some dummy data instead
-* make 'pinned ingredients' header show up only when needed
-* don't put delete on NEW page
+* make 'pinned ingredients' header show up only when needed ... or at all
 * all sorts of error handling - bad input, requests fail, service not availble, etc.
-* save page (new or edit) redirects to view page
-* make button blue on Add Component
-* edit page should 404 on no ID found; not empty form
-* styling everything to look not like ass; learn bootstrap
+* edit page should 404 on no ID found; not empty form ... or redirect to something else
 * error handling on PUT/POST/DELETE operations (query/get to as long as we're at it)
-* delete recipes
-* create new recipe
-* search
+* search ingredient-wise
 * any sort of testing at all (unit, phantom, whatever)
