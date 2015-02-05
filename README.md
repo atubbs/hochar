@@ -1,29 +1,35 @@
 # hochar
 
-A cocktail recipe book made with few features and minimal nonsense. Likely not useful to anybody but me. It's not done yet, so it likely doesn't even do the few things I say it does.
+Hochar is a cocktail recipe book made with limited features and minimal nonsense. It's useful to me and if it's useful to you, that's great.
 
-Basic idea is, when mixing drinks, you need a few things:
+## The Idea: Make It As Simple As Possible
+
+When I'm mixing drinks, I need a few pieces of information:
 
 * The ingredients
 * Any garnish information or (rarely) special instructions 
 * An ability to find a particular recipe by name
-* An ability to locate recipes by ingredients
+* An ability to locate recipes by ingredients(s)
 
-What this will never be:
+Think of Hochar as the little paper flipbook behind the bar that collects the house recipes and ideas 
+
+Hochar is intended to be
+
+## This Will Never Be X
 
 * Pretty; it's not likely going to look good and it's certainly never going to have pretty drink pictures
 * Descriptions of techniques; if anything I should restrict instructions to ~tweet size. Already think that things like "mix" or "shake" are too verbose, given that can be inferred from the ingredients; same goes for service up or down, though preference for a rock or neat is less obvious
 * Glassware guidance: if you need this, find a different program
 * Extensible: this is just about cocktails
 
-Some goofy design decisions so far:
+## Goofy Design Decisions
 
 * Ingredients have two parts, a generic name and an extended field. I don't use this entirely consistently, but the idea is that the generic ingredient is "scotch" (always lower case) and the extended is "Laphroaig" if the drink is best with that. The problem is something like a Laphroaig-specific cocktail can't (in theory) be made with just any old scotch. It's a tradeoff, deal with it. Or don't, I already told you this likely isn't for you.
 * There's no security; don't run this out in the open if you want your data to be left intact. This is also my first all-javascript app and my first real web development in about a decade, so it's probably fuill of security holes and bad practices.
 * I used express and angular and nedb because they were the first things I could figure out how to get working quickly enough; they likely aren't the best choices and boy is the Internet full of confusing guidance on that front
 * Deleting ingredients: just blank all the items out and save; it'll work, trust me
 
-Things that work:
+## Things that work:
 
 * Adding a recipe
 * Editing a recipe
@@ -32,14 +38,14 @@ Things that work:
 * Listing all recipes that match one ingredient
 * Searching a recipe by name
 
-Things that are broken or won't work:
+## Things that are broken or won't work / Known Errata
 
 * database path is hard-coded; unless you're running on linux and your username is atubbs, your odds of success without changing that are zero
 * The searching on the home page will find ingredients but it does nothing else and you can't do anything with them
 * the web front-end pretty just has a bad day if the back end isn't running
 * there's basically no error handling/recovery
 
-Things that I want to get working soon:
+## Things that I want to get working soon:
 
 * List all recipes that match several ingredients
 * Easily search an ingredient by name and allow it to be pinned; execute a multi-ingredient search via the pins
@@ -60,3 +66,4 @@ To get going:
 * visit localhost:8080
 * mix
 * drink
+

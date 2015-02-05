@@ -1,27 +1,20 @@
-<div style="padding: 0px 0px 0px 30px">
+<div>
   <div class="page-header" style="margin: 0">
     <h1>Let's Get Started</h1>
   </div>
-  <div style="padding-top: 10px">
-    <div style="padding-bottom: 30px">
-      If this was more clever, these searches would probably be combined somehow.
-    </div>
-    <div>
-      <h3>Recipe Search</h3>
+  <div class="row top-buffer">
+    <div class="col-xs-6">
       <form ng-submit="searchRecipesByName()">
-        <input type="text" ng-model="recipeSearchBox" typeahead="recipename for recipename in recipesnames | filter:$viewValue | limitTo:20" class="form-control"></input>
+        <input type="text" ng-model="recipeSearchBox" typeahead="recipename for recipename in recipesnames | filter:$viewValue | limitTo:20" class="form-control" placeholder="Search for a recipe by name."></input>
       </form>
     </div>
-    <div>
-      <h3>Ingredient Search</h3>
+    <div class="col-xs-6">
       <form ng-submit="pinnedIngredientAdd()">
-        <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control"></input>
+        <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control" placeholder="Search for ingredients by name."></input>
       </form>
-    </div>
-    <div>
-      <!-- TODO: figure out how to ng-show -->
-      <!--<h2>Pinned Ingredients</h3>-->
-        <!--<button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>-->
     </div>
   </div>
+  <!-- TODO: figure out how to ng-show -->
+  <!--<h2>Pinned Ingredients</h3>-->
+  <!--<button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>-->
 </div>

@@ -1,4 +1,5 @@
 # TODO 
+* no recipes found for search page
 * get rid of the provided db and populate with some dummy data instead
 * make 'pinned ingredients' header show up only when needed ... or at all
 * all sorts of error handling - bad input, requests fail, service not availble, etc.
