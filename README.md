@@ -1,35 +1,33 @@
 # hochar
 
-Hochar is a cocktail recipe book made with limited features and minimal nonsense. It's useful to me and if it's useful to you, that's great.
+Hochar is a cocktail recipe book made with limited features and minimal nonsense. I find it useful. There is a remote chance you will find it useful.
 
 ## The Idea: Make It As Simple As Possible
 
 When I'm mixing drinks, I need a few pieces of information:
 
 * The ingredients
-* Any garnish information or (rarely) special instructions 
-* An ability to find a particular recipe by name
-* An ability to locate recipes by ingredients(s)
+* Any garnish information or unique instructions
+* The ability to find a particular recipe by name
+* The ability to locate recipes by ingredients(s)
 
-Think of Hochar as the little paper flipbook behind the bar that collects the house recipes and ideas 
+Hochar is that little paper flipbook behind the bar that collects the house drinks, new ideas, and recipes from visiting adventurers, enthusiasts, and mixologists. The biggest difference is that it won't look like crap after three years, accidentally be thrown away, or have its pages stuck together with sour mix. Mostly because anybody that uses sour mix might as well not use recipes in the first place.
 
-Hochar is intended to be
+## Things Hochar Will Never Be
 
-## This Will Never Be X
+* This thing will never be pretty. It's not going to have glamor shots of drinks. Functionality is the only requirement.
+* It will not be a system for describing techniques or ingredients. Instructions are meant to be brief. A hundred characters should be enough for anybody. If you need several sentences or paragraphs of instructions to make a drink, this app is not for you.
+* There will be no guidance or schema for things like glassware, garnishes, etc. If it matters, throw it in the sentence of instructions. If not, leave it up to the bartender.
+* This is not an extensible system. While one can store whatever they want in its mindlessly simple schema, and perhaps even find that useful, the only point is providing a title, ingredients, and room for an instruction or note.
 
-* Pretty; it's not likely going to look good and it's certainly never going to have pretty drink pictures
-* Descriptions of techniques; if anything I should restrict instructions to ~tweet size. Already think that things like "mix" or "shake" are too verbose, given that can be inferred from the ingredients; same goes for service up or down, though preference for a rock or neat is less obvious
-* Glassware guidance: if you need this, find a different program
-* Extensible: this is just about cocktails
+## Goofy Design Decisions, Mistakes, and Other Disclaimers
 
-## Goofy Design Decisions
+* Ingredients have two parts, a generic name and an extended field. I don't use this entirely consistently, but the idea is that the generic ingredient is "scotch" (always lower case, but the thing enforces that constraint at runtime, so you can type and see whatever case you want) and the extended is "Laphroaig" if the drink is best with that. The problem is something like a Laphroaig-specific cocktail can't (in theory) be made with just any old scotch. I leave resolving these ambiguities and complexities to the wetware.
+* There's no security; don't run this out in the open if you want your data to be left intact. This is also my first all-javascript app and my first real web development in about a decade, so it's probably full of security holes and bad practices. You've been warned.
+* I used bootstrap, express, angular and nedb because they were the first things I could figure out how to get working quickly enough; they likely aren't the best choices and boy is the Internet full of confusing guidance on nearly every front. If anything, I think there's probably a little too much on the framework and libraries front. For example, ngResource is limited enough and hand-wavy enough that I'm pretty confident I should have just done this all via $http. Anyway, what gives? I think if I followed all of the advice I found, the architecture would be some odd hybrid of restify, mongo, express, angular, ember, knockout, bootstrap, apache tomcat, PHP, mysql, sinatra, and half a dozen other things I've since forgotten. As is, just the "bare basics" necessary to run this thing include about 35 megabytes and 3500 files! Okay, rant over...
+* There's no exposed mechanism to delete ingredients. Just blank them out and they'll quietly disappear.
 
-* Ingredients have two parts, a generic name and an extended field. I don't use this entirely consistently, but the idea is that the generic ingredient is "scotch" (always lower case) and the extended is "Laphroaig" if the drink is best with that. The problem is something like a Laphroaig-specific cocktail can't (in theory) be made with just any old scotch. It's a tradeoff, deal with it. Or don't, I already told you this likely isn't for you.
-* There's no security; don't run this out in the open if you want your data to be left intact. This is also my first all-javascript app and my first real web development in about a decade, so it's probably fuill of security holes and bad practices.
-* I used express and angular and nedb because they were the first things I could figure out how to get working quickly enough; they likely aren't the best choices and boy is the Internet full of confusing guidance on that front
-* Deleting ingredients: just blank all the items out and save; it'll work, trust me
-
-## Things that work:
+## Things That Work
 
 * Adding a recipe
 * Editing a recipe
@@ -38,32 +36,32 @@ Hochar is intended to be
 * Listing all recipes that match one ingredient
 * Searching a recipe by name
 
-## Things that are broken or won't work / Known Errata
+## Known Errata
 
-* database path is hard-coded; unless you're running on linux and your username is atubbs, your odds of success without changing that are zero
-* The searching on the home page will find ingredients but it does nothing else and you can't do anything with them
-* the web front-end pretty just has a bad day if the back end isn't running
-* there's basically no error handling/recovery
+* The database path is hard-coded; unless you're running on linux and your username is atubbs and your directly layout is eerily similar to mine, your odds of success without changing that are zero.
+* The searching on the home page will find ingredients but it does nothing else and you can't do anything with them.
+* the web front-end pretty just has a bad day if the back end isn't running.
+* There's basically no error handling/recovery for anything.
 
-## Things that I want to get working soon:
+## Soon I Hope
 
-* List all recipes that match several ingredients
-* Easily search an ingredient by name and allow it to be pinned; execute a multi-ingredient search via the pins
+* List all recipes that match several ingredients.
+* Easily search an ingredient by name and allow it to be pinned; execute a multi-ingredient search via the pins.
 
-Things I'm interested in getting working someday:
+## Maybe Someday
 
-* any sort of testing at all might be useful
-* Find similar recipes and/or list n most similar recipes
-* ingredient aliasing/branching (e.g. gin can be split into london dry, old tom, genever; rye isn't that far from bourbon and bourbon isn't that far from cognac (flavor/mixer profiles people, not saying they're at all similar production/history/culture-wise)
-* usable touch UI
-* drink scaling/unit conversion
+* Testing. Literally anything would be an improvement at this point.
+* Find similar recipes and/or list n most similar recipes.
+* Ingredient aliasing/branching (e.g. gin can be split into london dry, old tom, genever; rye isn't that far from bourbon and bourbon isn't that far from cognac (flavor/mixer profiles people, not saying they're at all similar production/history/culture-wise).
+* Usable touch UI.
+* Drink scaling & automatic unit conversion / normalization.
 
-To get going:
+# Getting It To Work
 
 * clone it
 * npm install
+* fix the hardcoded crap
 * npm start
 * visit localhost:8080
 * mix
 * drink
-
