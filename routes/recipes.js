@@ -12,10 +12,34 @@ var db = require('../database');
 router.get('/', function(req, res, next) {
   var filter = req.query.format !== void 0 && req.query.format === 'short' ? {name : 1, _id : 1} : {};
   if (void 0 !== req.query.includes) {
-    var ingredients = req.query.includes.split(',');
+    var str = decodeURIComponent(req.query.includes);
+    //var noplus = str.replace('+', ' ');
+    var ingredients = str.split(',');
+    console.log(ingredients);
     // TODO: support multiple ingredients
     db.handle.find({"components.ingredient" : ingredients[0]}, filter, function(err, doc) {
-      res.json(_.sortBy(doc, 'name'));
+      var acceptableMatches = [];
+      if (doc && doc.length > 0 && ingredients.length > 1) {
+        for (var i = 0; i < doc.length; ++i) {
+          console.log("Checking document: " + doc[i].name);
+          var allmatch = true;
+          for (var j = 1; allmatch && j < ingredients.length; ++j) {
+            console.log("Checking ingredient: " + ingredients[j]);
+            var anymatch = false;
+            for (var k = 0; !anymatch && k < doc[i].components.length; ++k) {
+              console.log("Comparing " + doc[i].components[k].ingredient + " and " + ingredients[j]);
+              if (doc[i].components[k].ingredient === ingredients[j]) {
+                anymatch = true;
+              }
+            }
+            if (!anymatch) allmatch = false;
+          }
+          if (allmatch) acceptableMatches.push(doc[i]);
+        }
+        res.json(_.sortBy(acceptableMatches, 'name'));
+      } else {
+        res.json(_.sortBy(doc, 'name'));
+      }
     });
   } else if (void 0 !== req.query.substr) {
     db.handle.find({"name" : new RegExp(req.query.substr, 'i')}, filter, function(err, doc) {

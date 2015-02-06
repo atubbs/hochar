@@ -58,10 +58,26 @@ app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, s
   $scope.recipeSubstring = "";
   service.getIngredients($scope);
   service.getRecipesNames($scope);
+  $scope.submitIngredientSearch = function(item, event) {
+    if ($scope.selectedIngredients.length > 0 && $scope.ingredientSearchBox.length == 0) {
+      var searchString = "";
+      for (var i = 0; i < $scope.selectedIngredients.length; ++i) {
+        searchString += $scope.selectedIngredients[i] + ",";
+      }
+      // strip the trailing comma
+      $location.url('/recipes/includes/' + searchString.substring(0, searchString.length - 1));
+    } else {
+      // just go to the all recipes pages
+      $location.url('/recipes');
+    }
+  };
   $scope.pinnedIngredientRemove = function(item, event) {
   };
   $scope.pinnedIngredientAdd = function(item, event) {
-    $scope.selectedIngredients.push($scope.ingredientSearchBox);
+    if ($scope.ingredientSearchBox.length >= 0) {
+      $scope.selectedIngredients.push($scope.ingredientSearchBox);
+      $scope.ingredientSearchBox = "";
+    }
   };
   $scope.searchRecipesByName = function(item, event) {
     $scope.recipeSubstring = $scope.recipeSearchBox;
@@ -150,7 +166,9 @@ function Engine(resource) {
 
   this.getRecipesIncludes = function(scope, ingredient) {
     var Recipes = resource('/recipes');
-    Recipes.query({includes:ingredient}, function(recipes) {
+    // encodeURIComponent makes comma encoded ... not sure what to do with that information just yet
+    //Recipes.query({includes:encodeURI(ingredient)}, function(recipes) {
+    Recipes.query({includes:encodeURIComponent(ingredient)}, function(recipes) {
       scope.recipes = recipes;
     });
   }

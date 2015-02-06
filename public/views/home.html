@@ -1,6 +1,6 @@
 <div>
   <div class="page-header" style="margin: 0">
-    <h1>Let's Get Started</h1>
+    <h1>Let's Find Something</h1>
   </div>
   <div class="row top-buffer">
     <div class="col-xs-6">
@@ -10,11 +10,16 @@
     </div>
     <div class="col-xs-6">
       <form ng-submit="pinnedIngredientAdd()">
-        <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control" placeholder="Search for ingredients by name."></input>
+        <div>
+          <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control" placeholder="Search for ingredients by name."></input>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default top-buffer" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-success top-buffer" ng-show="selectedIngredients.length > 0" ng-click="submitIngredientSearch()">Search Pinned Ingredients</button>
+        </div>
       </form>
     </div>
   </div>
-  <!-- TODO: figure out how to ng-show -->
-  <!--<h2>Pinned Ingredients</h3>-->
-  <!--<button class="btn btn-default" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</span>-->
 </div>
