@@ -15,19 +15,15 @@ router.get('/', function(req, res, next) {
     var str = decodeURIComponent(req.query.includes);
     //var noplus = str.replace('+', ' ');
     var ingredients = str.split(',');
-    console.log(ingredients);
     // TODO: support multiple ingredients
     db.handle.find({"components.ingredient" : ingredients[0]}, filter, function(err, doc) {
       var acceptableMatches = [];
       if (doc && doc.length > 0 && ingredients.length > 1) {
         for (var i = 0; i < doc.length; ++i) {
-          console.log("Checking document: " + doc[i].name);
           var allmatch = true;
           for (var j = 1; allmatch && j < ingredients.length; ++j) {
-            console.log("Checking ingredient: " + ingredients[j]);
             var anymatch = false;
             for (var k = 0; !anymatch && k < doc[i].components.length; ++k) {
-              console.log("Comparing " + doc[i].components[k].ingredient + " and " + ingredients[j]);
               if (doc[i].components[k].ingredient === ingredients[j]) {
                 anymatch = true;
               }
