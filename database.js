@@ -1,8 +1,12 @@
 var path = require('path');
+var nconf = require('nconf');
+var fs = require('fs');
+
+var fullpath = path.join(__dirname, 'data/' + nconf.get('dbfile'));
 var Datastore = require('nedb'), fs = require('fs');
-// TODO: this is hardcoded; may want it either some generic or something configurable
-//var db = new Datastore({ filename: '/home/atubbs/code/hochar/data/tried_and_true.json', autoload: true });
-var db = new Datastore({ filename: path.join(__dirname, 'data/tried_and_true.json'), autoload: true });
+
+// NB: new db is created if it doesn't exist, no warning will be generated
+var db = new Datastore({ filename: fullpath, autoload: true });
 module.exports = {
   handle : db
 };

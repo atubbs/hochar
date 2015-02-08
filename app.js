@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var nconf = require('nconf');
+
+nconf.argv().env().file({ file: './config.json', autoload: true});
 
 var db = require('./database');
 var app = express();

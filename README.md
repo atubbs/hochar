@@ -61,8 +61,8 @@ Hochar is that little paper flipbook behind the bar that collects the house drin
 
 * clone it
 * npm install
-* fix the hardcoded crap
-* npm start
+* change the config.json if you like
+* npm start ... or bin/www ... or bin/www --dbfile=myrecipes.json
 * visit localhost:8080
 * mix
 * drink
