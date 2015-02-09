@@ -40,8 +40,6 @@ Hochar is that little paper flipbook behind the bar that collects the house drin
 
 ## Known Errata
 
-* The database path is hard-coded; unless you're running on linux and your username is atubbs and your directly layout is eerily similar to mine, your odds of success without changing that are zero.
-* The searching on the home page will find ingredients but it does nothing else and you can't do anything with them.
 * the web front-end pretty just has a bad day if the back end isn't running.
 * There's basically no error handling/recovery for anything.
 
@@ -53,7 +51,7 @@ Hochar is that little paper flipbook behind the bar that collects the house drin
 
 * Testing. Literally anything would be an improvement at this point.
 * Find similar recipes and/or list n most similar recipes.
-* Ingredient aliasing/branching (e.g. gin can be split into london dry, old tom, genever; rye isn't that far from bourbon and bourbon isn't that far from cognac (flavor/mixer profiles people, not saying they're at all similar production/history/culture-wise).
+* Ingredient aliasing/branching (e.g. gin can be split into london dry, old tom, genever; rye isn't that far from bourbon and bourbon isn't that far from cognac (flavor/mixer profiles people, not saying they're at all similar production/history/culture-wise)).
 * Usable touch UI.
 * Drink scaling & automatic unit conversion / normalization.
 
