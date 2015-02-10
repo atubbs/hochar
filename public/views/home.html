@@ -14,7 +14,7 @@
           <input type="text" ng-model="ingredientSearchBox" typeahead="ingredient for ingredient in ingredients | filter:$viewValue | limitTo:20" class="form-control" placeholder="Search for ingredients by name."></input>
         </div>
         <div>
-          <button type="button" class="btn btn-default top-buffer" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove()" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</button>
+          <button type="button" class="btn btn-default top-buffer" ng-model="selectedIngredients[ingredient]" ng-click="pinnedIngredientRemove(ingredient)" ng-repeat="ingredient in selectedIngredients">{{ingredient}}</button>
         </div>
         <div>
           <button type="button" class="btn btn-success top-buffer" ng-show="selectedIngredients.length > 0" ng-click="submitIngredientSearch()">Search Pinned Ingredients</button>

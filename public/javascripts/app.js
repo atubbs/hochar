@@ -58,7 +58,7 @@ app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, s
   $scope.recipeSubstring = "";
   service.getIngredients($scope);
   service.getRecipesNames($scope);
-  $scope.submitIngredientSearch = function(item, event) {
+  $scope.submitIngredientSearch = function() {
     if ($scope.selectedIngredients.length > 0 && $scope.ingredientSearchBox.length == 0) {
       var searchString = "";
       for (var i = 0; i < $scope.selectedIngredients.length; ++i) {
@@ -71,15 +71,21 @@ app.controller("HomeCtrl", ['$scope', 'service', '$location', function($scope, s
       $location.url('/recipes');
     }
   };
-  $scope.pinnedIngredientRemove = function(item, event) {
+  $scope.pinnedIngredientRemove = function(ingredient) {
+    var i = $scope.selectedIngredients.indexOf(ingredient);
+    if (-1 != i) {
+      // swap last element to this position, pop last element
+      $scope.selectedIngredients[i] = $scope.selectedIngredients[$scope.selectedIngredients.length - 1];
+      $scope.selectedIngredients.pop();
+    }
   };
-  $scope.pinnedIngredientAdd = function(item, event) {
+  $scope.pinnedIngredientAdd = function() {
     if ($scope.ingredientSearchBox.length >= 0) {
       $scope.selectedIngredients.push($scope.ingredientSearchBox);
       $scope.ingredientSearchBox = "";
     }
   };
-  $scope.searchRecipesByName = function(item, event) {
+  $scope.searchRecipesByName = function() {
     $scope.recipeSubstring = $scope.recipeSearchBox;
     $location.url('/recipes/search/' + $scope.recipeSearchBox);
   };
@@ -116,16 +122,16 @@ app.controller("RecipesNewCtrl", ['$scope', 'service', '$routeParams', function(
 }]);
 
 app.controller("FormController", ['$scope', 'service', '$location', function FormController($scope, service, $location) {
-  $scope.editRecipeAddComponent = function(item, event) {
+  $scope.editRecipeAddComponent = function() {
     $scope.recipe.components.push({measure:'', unit:'', ingredient:'', extended:''});
   };
-  $scope.editRecipeSubmit = function(item, event) {
+  $scope.editRecipeSubmit = function() {
     service.saveRecipe($scope, $location); 
   };
-  $scope.editRecipeDelete = function(item, event) {
+  $scope.editRecipeDelete = function() {
     service.deleteRecipe($scope, $location); 
   };
-  $scope.editRecipeCancel = function(item, event) {
+  $scope.editRecipeCancel = function() {
     $location.url($scope.recipe._id === void 0
       ? '/'
       : '/recipes/' + $scope.recipe._id);
