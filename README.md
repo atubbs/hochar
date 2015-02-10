@@ -37,6 +37,7 @@ Hochar is that little paper flipbook behind the bar that collects the house drin
 * Listing all recipes that match one ingredient
 * Searching a recipe by name
 * Selecting a few ingredients and producing recipes that match them.
+* Remove selected ingredients before search is submitted.
 
 ## Known Errata
 
@@ -45,7 +46,7 @@ Hochar is that little paper flipbook behind the bar that collects the house drin
 
 ## Soon I Hope
 
-* Remove pinned search ingredients without reloading.
+Nothing to see here; short-term plans are finished.
 
 ## Maybe Someday
 
